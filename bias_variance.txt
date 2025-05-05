@@ -1,0 +1,31 @@
+🧠 What do bias and variance mean in classification?
+1.Bias
+A high bias means your model is underfitting: it’s too simple to capture the underlying patterns.
+In classification, it reflects how often your average model prediction is wrong compared to the true labels.
+
+2.Variance
+Variance measures the sensitivity of the model to small fluctuations in the training dataset.
+High variance means your model is overfitting: it captures noise in the training data.
+In classification, it reflects how much your model’s predictions change when trained on different subsets of data.
+
+Bias-Variance Tradeoff
+Ideal model: low bias and low variance.
+
+🔍 What does the function get_bias_variance do?
+
+mse, bias, var = bias_variance_decomp(
+    estimator, 
+    X_train=X_train, 
+    y_train=y_train, 
+    X_test=X_test, 
+    y_test=y_test, 
+    loss='0-1_loss',  # Classification-specific loss
+    random_seed=42
+)
+loss='0-1_loss' tells the function to use classification error rate as the loss.
+
+It trains the model multiple times on bootstrapped subsets of the training data to estimate:
+
+	1.mse: Mean prediction error (in this case, it's actually classification error).
+	2.bias: Error due to wrong average prediction.
+	3.var: Error due to prediction variability.
